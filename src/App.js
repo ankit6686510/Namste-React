@@ -54,7 +54,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <p>
-        Copyright &copy; {currYear}, Made with 🫶🖤 by <strong>Ankit</strong>
+        Copyright &copy; {currYear}, Made by by <strong>Ankit</strong>
       </p>
     </footer>
   );
