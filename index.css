@@ -107,11 +107,11 @@
 }
 
 .shimmer-card {
-  width: 200px;
-  height: 400px;
+  width: 220px;
+  height: 330px;
   background-color: #d0c8c8;
-  margin: 20px;
-  border-radius: 11px;
+  margin: 25px;
+  border-radius: 15px;
 }
 
 .loginBtn {
@@ -125,7 +125,7 @@
 }
 
 .loginBtn:hover {
-  background-color: #f6bb4d;
+  background-color: #d3992d;
 }
 
 .filter {

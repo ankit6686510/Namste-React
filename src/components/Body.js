@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import RestaurantCard from './RestaurantCard'
+import { useEffect, useState } from "react";
+import RestaurantCard from "./RestaurantCard";
 
-import Shimmer from './Shimmer';
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   // * React Hook -> A normal JavaScript function which is given to us by React (or) Normal JS utility functions
@@ -12,10 +12,10 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   // * Whenever a state variable updates or changes, react triggers a reconciliation cycle(re-renders the component)
-  console.log('Body rendered');
+  console.log("Body rendered");
 
   useEffect(() => {
     fetchData();
@@ -24,30 +24,40 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const data = await fetch(
-        'https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6558126&lng=77.2419522&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6558126&lng=77.2419522&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
-  
+      console.log(data)
+
       if (!data.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error("Failed to fetch data");
       }
-  
+
       const json = await data.json();
       console.log(json);
-  
-      const restaurants = json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  
+      console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants)
+
+      const restaurants =
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle//jis no pr object h wo daal de          
+         ?.restaurants
+
       if (!restaurants) {
-        throw new Error('Failed to extract restaurant data');
+        throw new Error("Failed to extract restaurant data");
       }
-  
-      setListOfRestaurants(restaurants);
-      setFilteredRestaurant(restaurants);
+
+      setListOfRestaurants(
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilteredRestaurant(
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
       // Handle error state or retry fetching data
     }
   };
-  
 
   // * Conditional Rendering
   // if (listOfRestaurants.length === 0) {
