@@ -9,6 +9,9 @@ const Body = () => {
   // * useEffect() -
 
   // * State Variable - Super Powerful variable
+  //always call useasstae inside functional component like body,but nevwe inside function function (){
+  //usestate called
+  // }never create inside if else aur conditionals stament,avoid
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
 
@@ -26,7 +29,7 @@ const Body = () => {
       const data = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6558126&lng=77.2419522&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
-      console.log(data)
+      console.log(data);
 
       if (!data.ok) {
         throw new Error("Failed to fetch data");
@@ -34,12 +37,14 @@ const Body = () => {
 
       const json = await data.json();
       console.log(json);
-      console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants)
+      console.log(
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
 
       const restaurants =
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle//jis no pr object h wo daal de          
-         ?.restaurants
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle //jis no pr object h wo daal de
+          ?.restaurants;
 
       if (!restaurants) {
         throw new Error("Failed to extract restaurant data");
